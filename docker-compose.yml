@@ -25,6 +25,7 @@ services:
     volumes:
       - ./data/certbot/conf:/etc/letsencrypt
       - ./data/certbot/www:/var/www/certbot
+    command: certbot certonly --webroot -w /var/www/certbot --force-renewal --email sunnam9897@gmail.com -d southernsun.io.vn --agree-tos
     entrypoint: "/bin/sh -c 'trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
     networks:
       - southernsun-network
